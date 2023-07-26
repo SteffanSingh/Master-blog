@@ -42,10 +42,12 @@ def add():
 
 @app.route("/delete/<int:post_id>")
 def delete(post_id):
+    print(blog_posts)
     for index,blog in enumerate(blog_posts):
+        print(type(blog))
         if blog["id"] == post_id:
             blog_posts.remove(blog)
-    post = [post for post in blog_posts if post["id"] == post_id]
+
     with open("data.json", "w") as fileObject:
         fileObject.write(json.dumps(blog_posts, indent=4))
     return redirect(url_for("index"))
@@ -54,7 +56,8 @@ def delete(post_id):
 @app.route('/update/<int:post_id>', methods=['GET', 'POST'])
 def update(post_id):
     # Fetch the blog posts from the JSON file
-    post = [post for post in blog_posts if post["id"] == post_id ]
+    post = [blog for blog in blog_posts if blog["id"] == post_id ]
+    print(post)
     if post is None:
         # Post not found
         return "Post not found", 404
@@ -63,14 +66,15 @@ def update(post_id):
         author =request.form["author"]
         title = request.form["title"]
         content = request.form["content"]
-        post['author'] = author
-        post["content"] = content
-        post["title"] = title
-
-    # Redirect back to index
+        dict(post)['author'] = author
+        dict(post)["content"] = content
+        dict(post)["title"] = title
+        blog_posts[post_id - 1] = post
+        with open("data.json", "w") as fileObject:
+            fileObject.write(json.dumps(blog_posts, indent=4))
+        # Redirect back to index
         return redirect(url_for("index"))
     # Else, it's a GET request
-
     # So display the update.html page
     return render_template('update.html', post=post)
 
