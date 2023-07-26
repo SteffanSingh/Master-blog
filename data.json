@@ -1,8 +1,26 @@
 [
-    {"id": 1, "author": "John Doe", "title": "First Post", "content": "This is my first post."},
-    {"id": 2, "author": "Jane Doe", "title": "Second Post", "content": "This is another post."}
-
+    {
+        "id": 1,
+        "author": "John Doe",
+        "title": "First Post",
+        "content": "This is my first post."
+    },
+    {
+        "id": 2,
+        "author": "Jane Doe",
+        "title": "Second Post",
+        "content": "This is another post."
+    },
+    {
+        "id": 4,
+        "title": "Mission Impossible",
+        "content": "Dead Reckoning- most upcoming movie to be watched",
+        "author": "Tom cruise"
+    },
+    {
+        "id": 4,
+        "title": "Mission Impossible",
+        "content": "Action thriller movie to watch , in theater with family and friends",
+        "author": "Tom cruise"
+    }
 ]
-
-
-

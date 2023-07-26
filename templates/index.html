@@ -10,14 +10,23 @@
     <h1>Welcome to My Flask Blog!</h1>
 
     {% for post in posts %}
-    <div class="post">
-
+        <form class="post" action="/delete/{{post['id']}} "  >
 
         <h2>{{post['title']}} </h2>
         <p><em>{{post['author']}}</em></p>
         <p>{{post['content']}}</p>
 
-    </div>
+
+        <input type="Submit" value='Delete' >
+
+
+        </form>
+
+
+        <form action="update/{{post['id']}}">
+            <input type="Submit" value="Update" >
+        </form>
+
 
     {% endfor %}
 
