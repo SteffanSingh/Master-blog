@@ -31,6 +31,7 @@ def add():
         new_post["title"] = title
         new_post["content"] = content
         new_post["author"] = author
+        new_post["likes"] = 0
 
         blog_posts.append(new_post)
 
@@ -39,6 +40,22 @@ def add():
 
         return redirect(url_for("index"))
     return render_template('add.html')
+
+@app.route("/like/<int:post_id>")
+def like(post_id):
+    post = [blog for blog in blog_posts if blog["id"] == post_id ][0]
+    print(post)
+
+    if post["id"] == post_id:
+        post["likes"] += 1
+        with open("data.json", "w") as fileObject:
+            fileObject.write(json.dumps(blog_posts, indent=4))
+        return redirect(url_for("index"))
+
+
+
+
+
 
 @app.route("/delete/<int:post_id>")
 def delete(post_id):

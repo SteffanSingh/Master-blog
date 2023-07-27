@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Flask Blog</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='static/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Welcome to My Flask Blog!</h1>
@@ -16,10 +16,13 @@
         <p><em>{{post['author']}}</em></p>
         <p>{{post['content']}}</p>
 
-
         <input type="Submit" value='Delete' >
 
 
+        </form>
+
+        <form action="/like/{{post['id']}}">
+            <input type="Submit" value="LIKES->"> <strong><mark>{{post['likes']}}</mark> </strong>
         </form>
 
 
