@@ -13,7 +13,8 @@
 
     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6"><div class="wrapper">
+        <div class="col-md-6">
+            <div class="wrapper">
              <h1>Welcome to My Flask Blog!</h1>
             {% for index,post in posts %}
         <form class="post" action="/delete/{{post['id']}} "  >
