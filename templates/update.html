@@ -9,23 +9,24 @@
 <body>
     <h1>Welcome to My Flask Blog!</h1>
 
-    {% for post in posts %}
-        <h1> Kingdom </h1>
-        <form method="POST" action="/update/{{post['id']}}"  >
+
+
+        <form method="POST" action="{{ url_for('update', post_id=post.id) }}"  >
+
 
         <label for="author">Author </label> <br>
-        <input type="text" id="author" name="author" value={{post['id']}} > <br>
+        <input type="text" id="author" name="author" value={{post.author}} > <br>
 
         <label for="title">Title </label> <br>
-        <input type="text" id="title" name="title" value={{post['title']}}> <br>
+        <input type="text" id="title" name="title" value={{post.title}}> <br>
 
         <label for="content">Content </label> <br>
-        <input type="text" id="content" name="content" value={{post['content']}} > <br>
+        <input type="text" id="content" name="content" value={{post.content}} > <br>
 
         <input type="submit" value="Update">
 
         </form>
-    {% endfor %}
+
 
 </body>
 </html>
