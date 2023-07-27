@@ -1,5 +1,38 @@
+wrapper {
 
+    background-color: grey;
+    padding: 30px 40px;
+border-radius: 10px;
+margin-top: 50px;
+box-shadow: 10px 5px #888;
 
+}
+
+h1 {
+  color: red;
+
+}
 h2{
+margin:10px;
+}
+
+.buttons{
+display:flex;
+justify-content:space-between
+}
+
+input{
+margin:20px;
+}
+
+.btn{
+margin:20px;
 color:red;
+background-color: light blue;
+
+}
+
+#like{
+
+margin-right:20px;
 }

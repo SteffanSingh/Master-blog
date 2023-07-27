@@ -5,36 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Flask Blog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Welcome to My Flask Blog!</h1>
+   <div class="container">
 
-    {% for index,post in posts %}
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6"><div class="wrapper">
+             <h1>Welcome to My Flask Blog!</h1>
+            {% for index,post in posts %}
         <form class="post" action="/delete/{{post['id']}} "  >
 
-        <h2> {{index+1}} -> {{post['title']}} </h2>
-        <p><em>{{post['author']}}</em></p>
+        <h2>  {{index+1}} -> {{post['title']}}  </h2>
+        <p><em><b>{{post['author']}}</b></em></p>
         <p>{{post['content']}}</p>
 
-        <input type="Submit" value='Delete' >
+        <input class="btn btn-primary btn-block"  type="Submit" value='Delete' >
 
 
         </form>
-
+    <div class="buttons">
         <form action="/like/{{post['id']}}">
-            <input type="Submit" value="LIKES->"> <strong><mark>{{post['likes']}}</mark> </strong>
+           <span> <input class="btn btn-primary btn-block" id="like"   type="Submit" value="Likes->{{post['likes']}}"></span> <span> <strong><mark></mark> </strong></span>
         </form>
 
 
         <form action="update/{{post['id']}}">
-            <input type="Submit" value="Update" >
-        </form>
+            <span><input class="btn btn-primary btn-block"  type="Submit" value="Update" ></span>
+        </form></div>
 
 
     {% endfor %}
 
         <form method="GET" action="/add">
-            <input type="Submit" value="Add Blog">
-        </form>
+            <mark><input class="btn btn-primary btn-block"  type="Submit" value="Add Blog"></mark>
+        </form></div> </div>
+        <div class="col-md-3"></div>
+    </div>
+   </div>
+
 </body>
 </html>
