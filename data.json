@@ -1,10 +1,10 @@
 [
     {
         "id": 1,
-        "author": "Live the Infinity",
-        "title": "Steffan Singh",
-        "content": "how to live the infinite life ",
-        "likes": 18
+        "author": "Author 1",
+        "title": "Live and Code",
+        "content": "coding is the life",
+        "likes": 19
     },
     {
         "id": 2,
@@ -33,5 +33,12 @@
         "content": "Action thriller movie to watch , in theater with family and friends",
         "author": "John Wick",
         "likes": 9
+    },
+    {
+        "id": 285180515217791822225062745694232605018,
+        "title": "God created the world",
+        "content": "This world is the creation of god and is being lived by living beings.",
+        "author": "Mohammad",
+        "likes": 0
     }
 ]

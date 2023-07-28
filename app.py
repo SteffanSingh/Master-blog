@@ -4,20 +4,24 @@ import uuid
 
 app = Flask(__name__)
 
-with open("data.json", "r") as fileObject:
-    data = fileObject.read()
-    blog_posts = json.loads(data)
-
+def readJson():
+    with open("data.json", "r") as fileObject:
+        data = fileObject.read()
+        blog_posts = json.loads(data)
+    return  blog_posts
 
 
 
 @app.route('/')
 def index():
-    # add code here to fetch the job posts from a file
+    """The function to display the list of blogs from the json file """
+    blog_posts = readJson()
     return render_template('index.html', posts=enumerate(blog_posts))
 
 @app.route("/add", methods= ["GET", "POST"])
 def add():
+    """The function to add the blog in blog list"""
+    blog_posts = readJson()
     if request.method == "POST":
         new_post = {}
         id = (uuid.uuid1()).int
@@ -43,6 +47,8 @@ def add():
 
 @app.route("/like/<int:post_id>")
 def like(post_id):
+    blog_posts = readJson()
+    """The function to  implement the like and increase the number of likes """
     post = [blog for blog in blog_posts if blog["id"] == post_id ][0]
     print(post)
 
@@ -51,19 +57,21 @@ def like(post_id):
         with open("data.json", "w") as fileObject:
             fileObject.write(json.dumps(blog_posts, indent=4))
         return redirect(url_for("index"))
-
-
+    render_template("error.html")
 
 
 
 
 @app.route("/delete/<int:post_id>")
 def delete(post_id):
-
+    """ The function to delete the blog from the blog list"""
+    blog_posts = readJson()
     for index,blog in enumerate(blog_posts):
-        print(type(blog))
+
         if blog["id"] == post_id:
             blog_posts.remove(blog)
+
+        return render_template("error.html")
 
     with open("data.json", "w") as fileObject:
         fileObject.write(json.dumps(blog_posts, indent=4))
@@ -72,7 +80,9 @@ def delete(post_id):
 
 @app.route('/update/<int:post_id>', methods=['GET', 'POST'])
 def update(post_id):
+    """The function to update the specified the blog with given id"""
     # Fetch the blog posts from the JSON file
+    blog_posts = readJson()
     post = [blog for blog in blog_posts if blog["id"] == post_id ][0]
     if post is None:
         # Post not found
@@ -95,6 +105,6 @@ def update(post_id):
         return redirect(url_for("index"))
     return render_template('update.html', post=post)
 
-
+#main function
 if __name__ == '__main__':
     app.run()
